@@ -2,16 +2,24 @@
     <CongratulationsMessage v-if="sorterGame.success"/>
     <div class="sorter container-fluid d-flex flex-column h-100 p-5" ref="sorter">
 
+        <div class="drag-item percussion drum" data-target="percussion"></div>
+        <div class="drag-item percussion hat" data-target="percussion"></div>
+        <div class="drag-item percussion xylophone" data-target="percussion"></div>
+
         <div class="drag-item wind flute" data-target="wind"></div>
         <div class="drag-item wind trumpet" data-target="wind"></div>
+        <div class="drag-item wind trombone" data-target="wind"></div>
 
         <div class="drag-item stringed guitar" data-target="stringed"></div>
         <div class="drag-item stringed el-guitar" data-target="stringed"></div>
         <div class="drag-item stringed harp" data-target="stringed"></div>
+        <div class="drag-item stringed violin" data-target="stringed"></div>
 
         <div class="drag-item keyboardIns piano" data-target="keyboardIns"></div>
+        <div class="drag-item keyboardIns accordion" data-target="keyboardIns"></div>
+        <div class="drag-item keyboardIns synth" data-target="keyboardIns"></div>
 
-        <div class="drag-item percussion drum" data-target="percussion"></div>
+
 
         <div class="title text-center">
             Отсортируй все инструменты
@@ -119,6 +127,12 @@ export default defineComponent({
     width: 150px;
 }
 
+.violin {
+    background-image: url("../assets/img/violin.png");
+    height: 300px;
+    width: 150px;
+}
+
 .harp {
     background-image: url("../assets/img/harp.png");
     height: 350px;
@@ -142,9 +156,39 @@ export default defineComponent({
     height: 200px;
 }
 
+.hat {
+    background-image: url("../assets/img/hat.png");
+    width: 200px;
+    height: 200px;
+}
+
+.xylophone {
+    background-image: url("../assets/img/xylophone.png");
+    width: 200px;
+    height: 200px;
+}
+
+.accordion {
+    background-image: url("../assets/img/accordion.png");
+    width: 200px;
+    height: 200px;
+}
+
 .trumpet {
     background-image: url("../assets/img/trumpet.png");
     width: 200px;
+    height: 200px;
+}
+
+.trombone {
+    background-image: url("../assets/img/trombone.png");
+    width: 300px;
+    height: 200px;
+}
+
+.synth {
+    background-image: url("../assets/img/synth.png");
+    width: 300px;
     height: 200px;
 }
 
