@@ -26,9 +26,12 @@ export default {
     background-image: url("../assets/img/cong.png");
     background-size: cover;
     background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .h1 {
     font-size: 8rem;
+
 }
 </style>
