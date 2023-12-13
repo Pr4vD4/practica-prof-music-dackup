@@ -35,14 +35,38 @@ export function startDragNDrop(sorterGame) {
 
     dragItems.forEach((dragItem) => {
 
-        let maxX = window.innerWidth - dragItem.getBoundingClientRect().width
-        let maxY = window.innerHeight - dragItem.getBoundingClientRect().height
+        let maxX = window.innerWidth - dragItem.getBoundingClientRect().width - 100
+        let maxY = window.innerHeight - dragItem.getBoundingClientRect().height - 100
 
-        dragItem.style.transform = `translateX(${randrange(0, maxX)}px) translateY(${randrange(0, maxY)}px)`
+        dragItem.style.transform = `translateX(${randrange(100, maxX)}px) translateY(${randrange(100, maxY)}px)`
         dragItem.addEventListener('touchmove', drag)
         dragItem.addEventListener('touchend', checkContainerCollision)
+
+        let dragContainer = document.querySelector('#' + dragItem.dataset.target)
+        let dragContainerPositions = dragContainer.getBoundingClientRect()
+
+        let dragItemPosition = dragItem.getBoundingClientRect()
+
+        if (dragItemPosition.x >= dragContainerPositions.x &&
+            dragItemPosition.x < dragContainerPositions.x + dragContainerPositions.width &&
+            dragItemPosition.y + dragItemPosition.height / 2 > dragContainerPositions.y &&
+            dragItemPosition.y + dragItemPosition.height / 2 < dragContainerPositions.y + dragContainerPositions.height
+        ) {
+            console.log()
+            if (dragItem.dataset.target === 'stringed') {
+                sorterGame.sortedStringed.add(dragItem)
+            } else if (dragItem.dataset.target === 'wind') {
+                sorterGame.sortedWind.add(dragItem)
+            } else if (dragItem.dataset.target === 'keyboardIns') {
+                sorterGame.sortedKeyboard.add(dragItem)
+            } else if (dragItem.dataset.target === 'percussion') {
+                sorterGame.sortedPercussion.add(dragItem)
+            }
+        }
+
     })
 
+    console.log(sorterGame)
     function drag(event) {
 
         if (position[0] + event.target.getBoundingClientRect().width / 2 < window.innerWidth &&
@@ -61,6 +85,7 @@ export function startDragNDrop(sorterGame) {
                 }
             })
         }
+
     }
 
     function checkContainerCollision(event) {
@@ -75,7 +100,6 @@ export function startDragNDrop(sorterGame) {
             dragItemPosition.y + dragItemPosition.height / 2 > dragContainerPositions.y &&
             dragItemPosition.y + dragItemPosition.height / 2 < dragContainerPositions.y + dragContainerPositions.height
         ) {
-            console.log('inside')
             if (event.target.dataset.target === 'stringed') {
                 sorterGame.sortedStringed.add(event.target)
             } else if (event.target.dataset.target === 'wind') {
@@ -85,6 +109,9 @@ export function startDragNDrop(sorterGame) {
             } else if (event.target.dataset.target === 'percussion') {
                 sorterGame.sortedPercussion.add(event.target)
             }
+
+            console.log(sorterGame)
+
         }
 
         if (sorterGame.sortedWind.size === sorterGame.wind &&
@@ -95,6 +122,8 @@ export function startDragNDrop(sorterGame) {
             console.log('congratulations')
             sorterGame.success = true
         }
+
+
     }
 
 }

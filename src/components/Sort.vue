@@ -1,6 +1,6 @@
 <template>
     <CongratulationsMessage v-if="sorterGame.success"/>
-    <div class="sorter container-fluid d-flex flex-column h-100 p-5" ref="sorter">
+    <div class="sorter d-flex flex-column h-100 p-5" ref="sorter">
 
         <div class="drag-item percussion drum" data-target="percussion"></div>
         <div class="drag-item percussion hat" data-target="percussion"></div>
@@ -71,7 +71,6 @@ export default defineComponent({
     },
     mounted() {
         this.sorterGame = new SorterGame(this.$refs.sorter)
-        console.log(this.sorterGame)
         startDragNDrop(this.sorterGame)
     }
 })
